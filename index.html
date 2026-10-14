@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Assignment 1</title>
+  </head>
+  <body>
+    <div class="min-h-screen bg-[#07090e] text-slate-200 antialiased selection:bg-cyan-500/20 selection:text-cyan-300">
+      <div class="w-full max-w-6xl mx-auto px-4 py-16 space-y-12">
+        <main class="space-y-12">
+          <section class="space-y-6 flex flex-col">
+            <div class="flex items-center gap-4">
+              <h2 class="text-xs font-mono tracking-widest text-slate-500 uppercase font-bold">04 // GRAPH</h2>
+            </div>
+            <div
+              class="flex-1 rounded-xl border border-slate-900 bg-[#0b0f19]/50 p-6 shadow-2xl bg-[radial-gradient(#1e293b_1px,transparent_1px)] bg-size-[16px_16px]"
+            >
+              <canvas
+                id="graph"
+                width="400"
+                height="400"
+                class="w-full rounded-md border border-slate-900 bg-[#04060a] shadow-inner"
+              ></canvas>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script>
+    const canvas = document.getElementById("graph");
+    const ctx = canvas.getContext("2d");
+    console.log(canvas, ctx);
+
+    if (ctx) {
+      const w = canvas.width;
+      const h = canvas.height;
+      const scale = 40;
+
+      ctx.clearRect(0, 0, w, h);
+      ctx.save();
+      ctx.translate(w / 2, h / 2);
+
+      // grid
+      ctx.strokeStyle = "#334155";
+      ctx.lineWidth = 1;
+
+      for (let i = -w; i < w; i += scale) {
+        ctx.beginPath();
+        ctx.moveTo(i, -h);
+        ctx.lineTo(i, h);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(-w, i);
+        ctx.lineTo(w, i);
+        ctx.stroke();
+      }
+
+      // axes
+      ctx.strokeStyle = "#e2e8f0";
+      ctx.lineWidth = 2;
+
+      ctx.beginPath();
+      ctx.moveTo(-w, 0);
+      ctx.lineTo(w, 0);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(0, -h);
+      ctx.lineTo(0, h);
+      ctx.stroke();
+
+      ctx.restore();
+    }
+    </script>
+  </body>
+</html>
